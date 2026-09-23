@@ -126,7 +126,7 @@ Web-only steps to list for the user at the end (the CLI cannot do these):
 
 - ~~Faculty / department at İTÜ~~ → answered: Department of Electronics and Communication Engineering
 - Other members (students, alumni) with titles, photos and links
-- Photos of Prof. Dr. Işın Erer and Dr. Yavuz Emre Kayacan (emails, Scholar and ORCID are in `_data/people.yml`)
+- Photos of Prof. Dr. Işın Erer, Prof. Dr. Selçuk Paker and Asst. Prof. Dr. Yavuz Emre Kayacan (emails, Scholar, ORCID and websites are in `_data/people.yml`)
 
 - Final list of members with photos and links
 - ~~Publications list~~ → added: radar/sonar/EW papers since 2022 (see handoff log)
