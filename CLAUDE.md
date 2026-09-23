@@ -157,7 +157,8 @@ Session 2026-09-23 (second computer):
   portal); Kayacan: yekayacan@29mayis.edu.tr (ORCID also lists kayacan15@itu.edu.tr).
   Contact page now lists both emails.
 - `pubsFromBib.py` made compatible with Python 3.9.
-- Not built locally: this computer has no Ruby/Bundler and no `gh`; the GitHub Actions build was checked.
+- NOT PUSHED YET and not built locally: this computer has no Ruby/Bundler, no `gh` and no GitHub
+  credentials. After `gh auth login` + `gh auth setup-git`, push and check the Actions run.
 
 Done:
 - Repo `rasspitu/rasspitu.github.io` created (public); GitHub account used: `iturassp` (org admin).
@@ -199,3 +200,6 @@ Still open / next steps:
   `winget install RubyInstallerTeam.RubyWithDevKit.3.3` then `ridk install 3` and `bundle install`
   (installs gems into the Ruby folder, not into OneDrive); `pip install pybtex` for publications.
 - Local preview: `bundle exec jekyll serve` → http://localhost:4000.
+- If git or pip fail with SSL certificate errors (seen on the second computer: something on the
+  network intercepts TLS), use the Windows certificate store: `git config --global http.sslBackend schannel`;
+  for pip, download the wheel with `curl` (which uses the Windows store) and `pip install --no-index --find-links . pybtex`.
