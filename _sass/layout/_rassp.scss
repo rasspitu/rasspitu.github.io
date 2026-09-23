@@ -255,3 +255,14 @@ html[data-theme="dark"] .home-logo {
   border: 1px solid var(--global-border-color);
   border-radius: $border-radius;
 }
+
+/* Sidebar: let long text items (location, department) wrap instead of overflowing.
+   The template sets white-space: nowrap on every item; links keep it. The hanging indent
+   (icon 1.25em + 0.5em padding + 0.5em margin) lines wrapped text up with the first line. */
+.author__urls li.author__desktop {
+  white-space: normal;
+  padding-left: 2.25em;
+  text-indent: -2.25em;
+  line-height: 1.4;
+  margin-bottom: 5px;
+}
