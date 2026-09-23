@@ -125,10 +125,10 @@ Web-only steps to list for the user at the end (the CLI cannot do these):
 
 - Faculty / department at İTÜ to show on the site
 - Other members (students, alumni) with titles, photos and links
-- Photos, emails, Google Scholar / ORCID links for Prof. Dr. Işın Erer and Dr. Yavuz Emre Kayacan
+- Photos of Prof. Dr. Işın Erer and Dr. Yavuz Emre Kayacan (emails, Scholar and ORCID are in `_data/people.yml`)
 
 - Final list of members with photos and links
-- Publications list (BibTeX preferred)
+- ~~Publications list~~ → added: radar/sonar/EW papers since 2022 (see handoff log)
 - ~~Whether to add a Turkish version of the site~~ → answered: no Turkish version
 - ~~Whether a News page is wanted~~ → answered: yes (added, `_data/news.yml`)
 - Group email address and physical address for Contact
@@ -143,6 +143,21 @@ every work session and commit it.
 ### Last update: 2026-09-23
 
 **Phases 0–4 of PROMPT.md are done. The site is live at https://rasspitu.github.io/.**
+
+Session 2026-09-23 (second computer):
+- Publications: 37 papers since 2022 in `markdown_generator/publications.bib`, collected from the
+  ORCID and Google Scholar profiles of Erer and Kayacan, with metadata from Crossref (DOI) and arXiv.
+  "scope" was read as the group's research scope (radar, sonar, GPR, electronic warfare); optical
+  remote sensing, pansharpening, thermal camera and GNSS papers were left out. Kayacan's 2026 PhD
+  thesis is not listed yet (no `thesis` category).
+- Research page rewritten into 6 themes that follow these papers, each with related publications:
+  GPR, through-obstacle / short-range sensing, SAR/ISAR, target detection & DOA, sonar, EW.
+  The earlier draft themes (tensor methods, Jetson/embedded, UWB) were folded in or dropped.
+- People: emails, Scholar and ORCID added for both researchers. Erer: ierer@itu.edu.tr (ITU research
+  portal); Kayacan: yekayacan@29mayis.edu.tr (ORCID also lists kayacan15@itu.edu.tr).
+  Contact page now lists both emails.
+- `pubsFromBib.py` made compatible with Python 3.9.
+- Not built locally: this computer has no Ruby/Bundler and no `gh`; the GitHub Actions build was checked.
 
 Done:
 - Repo `rasspitu/rasspitu.github.io` created (public); GitHub account used: `iturassp` (org admin).
@@ -165,8 +180,9 @@ Still open / next steps:
 1. Delete the empty repo `rasspitu/rassp` (user approved deleting it). Needs the `delete_repo` scope:
    `gh auth refresh -h github.com -s delete_repo`, then `gh repo delete rasspitu/rassp --yes`,
    or delete it in the browser (Settings → Delete this repository).
-2. Real content from the user (see "Open questions" above): faculty/department, members and photos,
-   emails / Scholar / ORCID of the two researchers, BibTeX, group email and address.
+2. Real content from the user (see "Open questions" above): faculty/department (ITU portal lists
+   Erer under the Department of Electronics and Communication Engineering; confirm), members and
+   photos, group email and address.
 3. Contact map: not added; suggested OpenStreetMap (no tracking) — waiting for the user's answer.
 4. Light/dark theme toggle: kept (follows OS preference by default) — ask whether to keep it.
 5. Mission paragraph (`_pages/about.md`) and research summaries (`_data/research.yml`) are drafts
