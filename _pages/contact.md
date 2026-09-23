@@ -15,6 +15,10 @@ Istanbul, Türkiye
 Email: [{{ site.author.email }}](mailto:{{ site.author.email }})
 {% endif %}
 
-For questions about a specific project, please contact the [group members]({{ '/people/' | relative_url }}) directly.
+{% for p in site.data.people %}{% if p.role == "pi" or p.role == "faculty" %}{% if p.email %}
+- **{{ p.name }}** ({{ p.title }}): [{{ p.email }}](mailto:{{ p.email }})
+{% endif %}{% endif %}{% endfor %}
+
+For questions about a specific project, you can also contact the [group members]({{ '/people/' | relative_url }}) directly.
 
 University website: [www.itu.edu.tr](https://www.itu.edu.tr)

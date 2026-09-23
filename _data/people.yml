@@ -17,16 +17,16 @@
 #   start_year  year the person joined the group
 #   placeholder true for example entries; they are hidden on the live site
 #
-# TODO: add photos, emails and profile links, and the other group members.
+# TODO: add photos and the other group members.
 
 - name: "Prof. Dr. Işın Erer"
   title: "Group Leader"
   role: pi
   photo:
-  email:        # TODO
-  scholar:      # TODO
+  email: "ierer@itu.edu.tr"
+  scholar: "https://scholar.google.com/citations?user=3YucjIAAAAAJ"
   github:
-  orcid:        # TODO
+  orcid: "0000-0002-2225-6379"
   linkedin:
   website:
   bio:
@@ -36,10 +36,10 @@
   title: "Researcher"
   role: faculty
   photo:
-  email:        # TODO
-  scholar:      # TODO
+  email: "yekayacan@29mayis.edu.tr"
+  scholar: "https://scholar.google.com/citations?user=EUeanRcAAAAJ"
   github:
-  orcid:        # TODO
+  orcid: "0000-0002-8951-1266"
   linkedin:
   website:
   bio:
