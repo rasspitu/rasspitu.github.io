@@ -11,3 +11,6 @@ end
 
 gem 'github-pages'
 gem 'connection_pool', '2.5.0'
+
+# Windows has no zoneinfo database; needed for `timezone` in _config.yml
+gem 'tzinfo-data', platforms: [:windows, :jruby]

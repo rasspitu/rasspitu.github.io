@@ -1,0 +1,61 @@
+/* ==========================================================================
+    RASSP THEME - LIGHT VERSION
+    Palette taken from the RASSP logo (see CLAUDE.md, "Branding")
+    ========================================================================== */
+
+/* Brand palette */
+$rassp-navy                 : #0A2540; // Deep navy: headings, masthead
+$rassp-radar-blue           : #3FA9F5; // Radar blue: primary accent
+$rassp-sonar-teal           : #1FC7A6; // Sonar teal: secondary accent, dividers
+$rassp-steel-gray           : #5B6B7F; // Steel gray: secondary text, captions
+$rassp-white                : #FFFFFF;
+
+/* Radar blue is too light for text on white (about 2.6:1), so links use a
+   darker shade of it that meets WCAG AA (at least 4.5:1). */
+$rassp-link                 : mix(#000, $rassp-radar-blue, 40%);
+
+/* Color codes used for the theme */
+$primary-color              : $rassp-navy;
+$gray                       : $rassp-steel-gray;
+$dark-gray                  : mix(#000, $gray, 40%);
+$darker-gray                : mix(#000, $gray, 60%);
+$light-gray                 : mix(#fff, $gray, 50%);
+$lighter-gray               : mix(#fff, $gray, 90%);
+
+/* Color codes used for the site */
+$danger-color               : #ee5f5b;
+$info-color                 : $rassp-radar-blue;
+$notice-color               : $rassp-steel-gray;
+$success-color              : $rassp-sonar-teal;
+$warning-color              : #f89406;
+
+/* Other basic settings for the template */
+$border-radius              : 4px;
+$box-shadow                 : 0 1px 1px rgba(0, 0, 0, 0.125);
+$global-transition          : all 0.2s ease-in-out;
+$masthead-height            : 70px;
+$navicon-width              : 28px;
+$navicon-height             : 4px;
+$sidebar-link-max-width     : 250px;
+$sidebar-screen-min-width   : 1024px;
+
+/* Light theme for the site */
+:root {
+    --global-base-color                 : #{$primary-color};
+    --global-bg-color                   : #{$rassp-white};
+    --global-footer-bg-color            : #{mix(#fff, $rassp-navy, 95%)};
+    --global-border-color               : #{$lighter-gray};
+    --global-dark-border-color          : #{$light-gray};
+    --global-accent-color               : #{$rassp-sonar-teal};
+    --global-code-background-color      : #fafafa;
+    --global-code-text-color            : #{$darker-gray};
+    --global-fig-caption-color          : #{$rassp-steel-gray};
+    --global-link-color                 : #{$rassp-link};
+    --global-link-color-hover           : #{$rassp-navy};
+    --global-link-color-visited         : #{mix(#000, $rassp-link, 15%)};
+    --global-masthead-link-color        : #{$rassp-navy};
+    --global-masthead-link-color-hover  : #{$rassp-link};
+    --global-text-color                 : #{mix(#000, $rassp-navy, 10%)};
+    --global-text-color-light           : #{$rassp-steel-gray};
+    --global-thead-color                : #{$lighter-gray};
+}
