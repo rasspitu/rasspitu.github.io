@@ -157,7 +157,8 @@ def main():
             skipped += 1
             continue
         filename, content = to_markdown(key, entry)
-        (OUT_DIR / filename).write_text(content, encoding="utf-8", newline="\n")
+        with open(OUT_DIR / filename, "w", encoding="utf-8", newline="\n") as out:
+            out.write(content)
         print(f"wrote _publications/{filename}")
         written += 1
 
