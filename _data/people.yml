@@ -28,7 +28,7 @@
   github:
   orcid: "0000-0002-2225-6379"
   linkedin:
-  website:
+  website: "https://akademi.itu.edu.tr/ierer/"
   bio:
   start_year:
 
@@ -45,7 +45,7 @@
   bio:
   start_year:
 
-- name: "Dr. Yavuz Emre Kayacan"
+- name: "Asst. Prof. Dr. Yavuz Emre Kayacan"
   title: "Senior Researcher"
   role: faculty
   photo:
@@ -54,7 +54,7 @@
   github:
   orcid: "0000-0002-8951-1266"
   linkedin:
-  website:
+  website: "https://mdbf.29mayis.edu.tr/tr/akademik-kadro/yavuz-emre-kayacan"
   bio:
   start_year:
 

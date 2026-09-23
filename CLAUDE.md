@@ -10,7 +10,7 @@ A static research-group website for **RASSP — RAdar and Sonar Signal Processin
 - Department within İTÜ: Department of Electronics and Communication Engineering (Elektronik ve Haberleşme Mühendisliği), https://ehb.itu.edu.tr/en — the group belongs to this department
 - Group lead (PI, role `pi`): Prof. Dr. Işın Erer
 - Professor Emeritus (role `faculty`, listed before Kayacan): Prof. Dr. Selçuk Paker, spaker@itu.edu.tr
-- Senior Researcher (role `faculty`): Dr. Yavuz Emre Kayacan
+- Senior Researcher (role `faculty`): Asst. Prof. Dr. Yavuz Emre Kayacan
 - Other members: TODO (confirm with the user)
 - Write names with correct Turkish characters (Işın, not Isin). On the People page list the PI first, then researchers.
 - Do not use the official İTÜ logo or seal unless the user provides the file and confirms permission; link to https://www.itu.edu.tr instead.
