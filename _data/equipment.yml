@@ -1,0 +1,32 @@
+# Lab equipment, shown on the Equipments page in this order.
+#
+# Fields:
+#   name        equipment name / model
+#   type        category, e.g. "GPR system", "Sonar", "Compute platform"
+#   description one short paragraph (Markdown allowed)
+#   image       optional photo in /images/equipment/, e.g. "equipment/gpr.jpg"
+#   image_alt   description of the photo for screen readers (required if image is set)
+#   placeholder true for example entries; they are hidden on the live site
+#
+# TODO: replace the placeholders with the group's real equipment.
+
+- name: "TODO: GPR system model"
+  type: "GPR system"
+  description: "TODO: frequency range, antenna configuration, what it is used for."
+  image:
+  image_alt:
+  placeholder: true
+
+- name: "TODO: Sonar system model"
+  type: "Sonar"
+  description: "TODO: short description."
+  image:
+  image_alt:
+  placeholder: true
+
+- name: "TODO: Embedded compute platform"
+  type: "Compute platform"
+  description: "TODO: e.g. the board used for real-time detection experiments."
+  image:
+  image_alt:
+  placeholder: true

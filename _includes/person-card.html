@@ -1,0 +1,23 @@
+{% comment %}
+  One member card on the People page.
+  Usage: {% include person-card.html person=person %}
+{% endcomment %}
+{% assign p = include.person %}
+<li class="person-card">
+  {% if p.photo %}
+    <img class="person-card__photo" src="{{ p.photo | prepend: '/images/people/' | relative_url }}" alt="Photo of {{ p.name }}" width="140" height="140" loading="lazy">
+  {% else %}
+    <img class="person-card__photo" src="{{ '/images/people/default-avatar.svg' | relative_url }}" alt="" width="140" height="140" loading="lazy">
+  {% endif %}
+  <h3 class="person-card__name">{{ p.name }}</h3>
+  {% if p.title %}<p class="person-card__title">{{ p.title }}{% if p.start_year and p.role != 'alumni' %} &middot; since {{ p.start_year }}{% endif %}</p>{% endif %}
+  {% if p.bio %}<div class="person-card__bio">{{ p.bio | markdownify }}</div>{% endif %}
+  <ul class="person-card__links">
+    {% if p.email %}<li><a href="mailto:{{ p.email }}"><i class="fas fa-envelope" aria-hidden="true"></i> Email</a></li>{% endif %}
+    {% if p.website %}<li><a href="{{ p.website }}"><i class="fas fa-link" aria-hidden="true"></i> Website</a></li>{% endif %}
+    {% if p.scholar %}<li><a href="{{ p.scholar }}"><i class="ai ai-google-scholar" aria-hidden="true"></i> Scholar</a></li>{% endif %}
+    {% if p.orcid %}<li><a href="https://orcid.org/{{ p.orcid }}"><i class="ai ai-orcid" aria-hidden="true"></i> ORCID</a></li>{% endif %}
+    {% if p.github %}<li><a href="https://github.com/{{ p.github }}"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a></li>{% endif %}
+    {% if p.linkedin %}<li><a href="https://www.linkedin.com/in/{{ p.linkedin }}"><i class="fab fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>{% endif %}
+  </ul>
+</li>

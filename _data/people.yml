@@ -1,0 +1,61 @@
+# Group members. The People page groups them by role, in this order:
+#   pi, faculty, phd, msc, undergrad, alumni
+# and keeps the order of this file within each role.
+#
+# Fields (leave a field empty to hide it):
+#   name        full name with correct Turkish characters, including academic title
+#   title       position shown under the name
+#   role        pi | faculty | phd | msc | undergrad | alumni
+#   photo       file in /images/people/, square, at least 300x300 px (empty: default avatar)
+#   email       e-mail address
+#   scholar     Google Scholar profile URL
+#   github      GitHub username
+#   orcid       ORCID iD, e.g. 0000-0002-1825-0097
+#   linkedin    LinkedIn username (the part after linkedin.com/in/)
+#   website     personal or university page URL
+#   bio         one or two sentences
+#   start_year  year the person joined the group
+#   placeholder true for example entries; they are hidden on the live site
+#
+# TODO: add photos, emails and profile links, and the other group members.
+
+- name: "Prof. Dr. Işın Erer"
+  title: "Group Leader"
+  role: pi
+  photo:
+  email:        # TODO
+  scholar:      # TODO
+  github:
+  orcid:        # TODO
+  linkedin:
+  website:
+  bio:
+  start_year:
+
+- name: "Dr. Yavuz Emre Kayacan"
+  title: "Researcher"
+  role: faculty
+  photo:
+  email:        # TODO
+  scholar:      # TODO
+  github:
+  orcid:        # TODO
+  linkedin:
+  website:
+  bio:
+  start_year:
+
+- name: "TODO: PhD student name"
+  title: "PhD Student"
+  role: phd
+  placeholder: true
+
+- name: "TODO: MSc student name"
+  title: "MSc Student"
+  role: msc
+  placeholder: true
+
+- name: "TODO: Alumni name"
+  title: "MSc, 20XX. TODO: current position"
+  role: alumni
+  placeholder: true

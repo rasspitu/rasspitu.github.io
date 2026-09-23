@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <title>Default avatar</title>
+  <rect width="200" height="200" fill="#E6EAEF"/>
+  <circle cx="100" cy="78" r="38" fill="#5B6B7F"/>
+  <path d="M28 200c0-44 32-72 72-72s72 28 72 72z" fill="#5B6B7F"/>
+</svg>

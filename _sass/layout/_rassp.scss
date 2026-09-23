@@ -10,6 +10,14 @@ button:focus-visible,
   outline-offset: 2px;
 }
 
+/* Footer sits at the end of the page instead of covering content while scrolling
+   (body already reserves room for it with padding-bottom). */
+@media screen and (min-width: 769px) {
+  .page__footer {
+    position: absolute;
+  }
+}
+
 /* Masthead: emblem + site title
    ========================================================================== */
 
@@ -120,8 +128,10 @@ html[data-theme="dark"] .home-logo {
     min-width: 0;
   }
 
-  &__title {
+  .page__content &__title {
     margin-top: 0;
+    padding-bottom: 0;
+    border-bottom: 0;
   }
 
   &__meta {
@@ -185,6 +195,34 @@ html[data-theme="dark"] .home-logo {
     li {
       margin: 0;
     }
+  }
+}
+
+/* Publications
+   ========================================================================== */
+
+.publication-list > li {
+  margin-bottom: 1em;
+}
+
+.publication__links a {
+  margin-right: 0.5em;
+  font-size: $type-size-6;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.publication__bibtex {
+  font-size: $type-size-6;
+
+  summary {
+    cursor: pointer;
+    color: var(--global-link-color);
+  }
+
+  pre {
+    margin: 0.5em 0 0;
+    white-space: pre-wrap;
   }
 }
 

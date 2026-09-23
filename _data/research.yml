@@ -1,0 +1,77 @@
+# Research themes, shown on the home page (titles) and the Research page (full entries).
+#
+# Fields:
+#   id                    short identifier, used as the anchor: /research/#<id>
+#   title                 theme name
+#   summary               one short paragraph (Markdown allowed)
+#   image                 optional figure in /images/research/, e.g. "research/gpr.png"
+#   image_alt             description of the figure for screen readers (required if image is set)
+#   related_publications  optional list of publication file names in _publications/ without ".md",
+#                         e.g. ["2025-03-01-my-paper-title"]
+#
+# TODO: the summaries below are initial drafts written from the topic list; review and
+#       replace them with the group's own wording, and add figures and related publications.
+
+- id: gpr
+  title: "Ground Penetrating Radar (GPR) signal processing and clutter removal"
+  summary: >-
+    GPR measurements are dominated by strong surface reflections and clutter that hide the
+    responses of buried objects. We study methods that separate target signals from clutter
+    and noise so that subsurface objects become visible and easier to interpret.
+  image:
+  image_alt:
+  related_publications: []
+
+- id: deep-learning
+  title: "Deep learning for radar and sonar signals"
+  summary: >-
+    We investigate deep learning architectures for radar and sonar data, including diffusion
+    models and state-space (Mamba) architectures, for tasks such as clutter suppression,
+    denoising and detection.
+  image:
+  image_alt:
+  related_publications: []
+
+- id: tensor
+  title: "Tensor decomposition methods for radar data"
+  summary: >-
+    Multi-dimensional radar data can be represented as tensors. We study low-rank tensor models,
+    such as tensor train and tensor ring decompositions, to separate targets from clutter and to
+    exploit the structure of the data across dimensions.
+  image:
+  image_alt:
+  related_publications: []
+
+- id: gpr-3d
+  title: "3D (C-scan) GPR imaging and subsurface target and threat detection"
+  summary: >-
+    Using three-dimensional C-scan GPR data, we work on imaging and on detecting buried targets
+    and threats in the subsurface.
+  image:
+  image_alt:
+  related_publications: []
+
+- id: embedded
+  title: "Real-time target detection on embedded platforms"
+  summary: >-
+    We bring detection algorithms to embedded hardware, such as the NVIDIA Jetson Orin family,
+    with the aim of running them in real time on the sensing platform.
+  image:
+  image_alt:
+  related_publications: []
+
+- id: uwb
+  title: "Ultra-wideband (UWB) radar"
+  summary: >-
+    We work with ultra-wideband radar systems and their signal processing.
+  image:
+  image_alt:
+  related_publications: []
+
+- id: sonar
+  title: "Sonar signal processing and underwater acoustic sensing"
+  summary: >-
+    Below the waterline, we study signal processing for sonar and underwater acoustic sensing.
+  image:
+  image_alt:
+  related_publications: []

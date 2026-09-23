@@ -1,0 +1,12 @@
+# News items, newest first. Add new items at the TOP of the list.
+#
+# Fields:
+#   date        YYYY-MM-DD
+#   text        one or two sentences (Markdown allowed, e.g. links)
+#   placeholder true for example entries; they are hidden on the live site
+#
+# The home page shows the latest items (see `news_on_home` in _config.yml).
+
+- date: 2026-09-23
+  text: "TODO: first news item, e.g. a paper acceptance or a new group member."
+  placeholder: true
