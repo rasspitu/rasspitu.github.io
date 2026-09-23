@@ -265,4 +265,9 @@ html[data-theme="dark"] .home-logo {
   text-indent: -2.25em;
   line-height: 1.4;
   margin-bottom: 5px;
+
+  // The icon is inline-block and would inherit the negative indent, pushing its glyph out of view
+  i {
+    text-indent: 0;
+  }
 }
