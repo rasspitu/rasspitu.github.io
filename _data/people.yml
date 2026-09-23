@@ -32,6 +32,19 @@
   bio:
   start_year:
 
+- name: "Prof. Dr. Selçuk Paker"
+  title: "Professor Emeritus"
+  role: faculty
+  photo:
+  email: "spaker@itu.edu.tr"
+  scholar: "https://scholar.google.com/citations?user=e4qDlCMAAAAJ"
+  github:
+  orcid: "0000-0002-1769-1835"
+  linkedin:
+  website: "https://web.itu.edu.tr/spaker/english.html"
+  bio:
+  start_year:
+
 - name: "Dr. Yavuz Emre Kayacan"
   title: "Senior Researcher"
   role: faculty
