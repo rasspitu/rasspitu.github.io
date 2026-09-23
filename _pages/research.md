@@ -22,7 +22,8 @@ author_profile: true
       <p><strong>Related publications:</strong></p>
       <ul>
         {% for slug in theme.related_publications %}
-          {% assign pub = site.publications | where: "slug", slug | first %}
+          {% assign pub_path = "_publications/" | append: slug | append: ".md" %}
+          {% assign pub = site.publications | where: "relative_path", pub_path | first %}
           {% if pub %}<li><a href="{{ pub.url | relative_url }}">{{ pub.title }}</a> ({{ pub.date | date: "%Y" }})</li>{% endif %}
         {% endfor %}
       </ul>

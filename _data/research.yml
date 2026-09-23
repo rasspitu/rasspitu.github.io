@@ -9,69 +9,113 @@
 #   related_publications  optional list of publication file names in _publications/ without ".md",
 #                         e.g. ["2025-03-01-my-paper-title"]
 #
-# TODO: the summaries below are initial drafts written from the topic list; review and
-#       replace them with the group's own wording, and add figures and related publications.
+# The themes follow the group's publications since 2022 (markdown_generator/publications.bib).
+# TODO: the group may refine the wording and add a figure to each theme.
 
 - id: gpr
-  title: "Ground Penetrating Radar (GPR) signal processing and clutter removal"
+  title: "Ground penetrating radar: clutter removal and buried object detection"
   summary: >-
-    GPR measurements are dominated by strong surface reflections and clutter that hide the
-    responses of buried objects. We study methods that separate target signals from clutter
-    and noise so that subsurface objects become visible and easier to interpret.
+    GPR data are dominated by ground-surface reflections and clutter that mask the responses of
+    buried objects. We develop clutter removal methods that range from low-rank and sparse models
+    (robust matrix factorization, learned RPCA, learned dictionaries) to deep networks
+    (convolutional autoencoders, vision transformers, B-spline activations), and we combine them
+    with deep detectors, up to joint networks that remove clutter and detect buried objects at the
+    same time. Related work covers recovering missing GPR measurements, clutter removal on FPGA,
+    and tomographic GPR imaging of trees and cylindrical objects.
   image:
   image_alt:
-  related_publications: []
+  related_publications:
+    - 2026-01-01-joint-deep-learning-for-simultaneous-clutter-removal-and-bur
+    - 2024-11-01-enhancing-deep-learning-networks-performance-by-using-b-spli
+    - 2024-07-01-autoencoder-guided-low-rank-approximation-approach-for-clutt
+    - 2024-07-01-combining-image-restoration-with-deep-detectors-for-improved
+    - 2024-01-01-a-vision-transformer-based-approach-to-clutter-removal-in-gp
+    - 2023-07-01-clutter-removal-in-ground-penetrating-radar-by-learned-rpca
+    - 2023-07-01-clutter-removal-in-ground-penetrating-radar-with-learned-dic
+    - 2022-11-01-a-new-clutter-removal-method-based-on-direct-robust-matrix-f
+    - 2022-06-01-extracting-tomographic-images-of-interior-structures-of-cyli
+    - 2022-05-01-clutter-removal-for-ground-penetrating-radars-on-fpga-design
+    - 2022-02-01-missing-data-recovery-via-deep-networks-for-limited-ground-p
+    - 2022-01-01-a-novel-convolutional-autoencoder-based-clutter-removal-meth
 
-- id: deep-learning
-  title: "Deep learning for radar and sonar signals"
+- id: through-obstacle
+  title: "Through-obstacle imaging and short-range radar sensing"
   summary: >-
-    We investigate deep learning architectures for radar and sonar data, including diffusion
-    models and state-space (Mamba) architectures, for tasks such as clutter suppression,
-    denoising and detection.
+    With low-cost, portable radar measurement systems we image what lies behind walls and inside
+    structures. This includes background subtraction and wall mitigation with tensor RPCA and
+    non-negative matrix factorization, imaging the interior of reinforced concrete, and detecting
+    the vital signs of people in debris environments with stepped-frequency continuous-wave (SFCW)
+    radar.
   image:
   image_alt:
-  related_publications: []
+  related_publications:
+    - 2025-02-01-music-guided-svd-method-for-the-detection-of-vital-signs-wit
+    - 2024-05-01-detection-of-vital-signs-in-debris-environment-using-sfcw-ra
+    - 2024-05-01-imaging-of-reinforced-concrete-structures-using-radar
+    - 2022-12-01-fast-background-subtraction-for-through-obstacle-imaging-usi
+    - 2022-01-01-a-novel-tensor-rpca-based-background-subtraction-method-for
+    - 2022-01-01-non-negative-matrix-factorization-based-approaches-for-wall
 
-- id: tensor
-  title: "Tensor decomposition methods for radar data"
+- id: sar-isar
+  title: "SAR and ISAR imaging"
   summary: >-
-    Multi-dimensional radar data can be represented as tensors. We study low-rank tensor models,
-    such as tensor train and tensor ring decompositions, to separate targets from clutter and to
-    exploit the structure of the data across dimensions.
+    We form synthetic aperture radar (SAR) and inverse synthetic aperture radar (ISAR) images from
+    limited or incomplete measurements, using sparse recovery with nuclear norm minimization,
+    plug-and-play ADMM with entropy-based thresholding, and deep image priors. We also collect SAR
+    images with a low-cost radar mounted on a mini drone.
   image:
   image_alt:
-  related_publications: []
+  related_publications:
+    - 2025-11-01-kapurs-entropy-thresholding-based-plug-and-play-admm-for-sar
+    - 2025-01-01-deep-image-prior-assisted-isar-imaging-for-missing-data-case
+    - 2023-07-01-synthetic-aperture-radar-imaging-using-a-low-cost-radar-moun
+    - 2023-05-01-sparse-recovery-for-isar-imaging-via-nuclear-norm-minimizati
 
-- id: gpr-3d
-  title: "3D (C-scan) GPR imaging and subsurface target and threat detection"
+- id: target
+  title: "Radar target detection, classification and direction finding"
   summary: >-
-    Using three-dimensional C-scan GPR data, we work on imaging and on detecting buried targets
-    and threats in the subsurface.
+    We apply deep learning to radar detection and recognition: transformer networks for target
+    detection, despeckling-based data augmentation for target classification, recurrent networks on
+    range-Doppler maps for helicopter classification, and an encoder-decoder RetNet for interference
+    mitigation in FMCW radar. For direction-of-arrival (DOA) estimation we study deep learning in
+    MIMO radars and in the autocorrelation domain together with autoregressive modelling.
   image:
   image_alt:
-  related_publications: []
-
-- id: embedded
-  title: "Real-time target detection on embedded platforms"
-  summary: >-
-    We bring detection algorithms to embedded hardware, such as the NVIDIA Jetson Orin family,
-    with the aim of running them in real time on the sensing platform.
-  image:
-  image_alt:
-  related_publications: []
-
-- id: uwb
-  title: "Ultra-wideband (UWB) radar"
-  summary: >-
-    We work with ultra-wideband radar systems and their signal processing.
-  image:
-  image_alt:
-  related_publications: []
+  related_publications:
+    - 2025-11-01-an-encoder-decoder-retnet-model-for-fmcw-radar-interference
+    - 2025-06-01-radar-target-detection-using-improved-transformer-neural-net
+    - 2024-05-01-direction-of-arrival-estimation-in-autocorrelation-domain-wi
+    - 2022-11-01-2d-overlapping-range-doppler-map-approach-for-helicopter-cla
+    - 2022-11-01-doa-estimation-in-mimo-radars-via-deep-learning
+    - 2022-07-01-despeckling-based-data-augmentation-approach-in-deep-learnin
 
 - id: sonar
-  title: "Sonar signal processing and underwater acoustic sensing"
+  title: "Sonar imaging and underwater object detection"
   summary: >-
-    Below the waterline, we study signal processing for sonar and underwater acoustic sensing.
+    Below the waterline, we detect objects in forward-looking sonar images with transformer-guided
+    image enhancement and cross-modality knowledge distillation, and we form synthetic aperture
+    sonar (SAS) images from limited measurements with deep learning.
   image:
   image_alt:
-  related_publications: []
+  related_publications:
+    - 2026-01-01-cross-modality-object-level-knowledge-distillation-for-enhan
+    - 2025-10-01-underwater-object-detection-in-forward-looking-sonar-using-a
+    - 2025-06-01-synthetic-aperture-sonar-imagery-using-limited-measurements
+
+- id: electronic-warfare
+  title: "Electronic warfare and passive RF sensing"
+  summary: >-
+    For electronic support (ES) systems we study receiver search strategies based on randomized
+    low-rank and sparse decomposition, time delay estimation, TDOA-based target localization and
+    specific emitter identification with deep learning. We also process ADS-B signals, with a
+    reliability-based decoder for low-SNR conditions and a neural network that separates
+    overlapping signals.
+  image:
+  image_alt:
+  related_publications:
+    - 2026-07-01-a-scalable-dual-representation-deep-learning-architecture-fo
+    - 2026-07-01-tdoa-based-target-localization-in-passive-radar-electronic-s
+    - 2026-07-01-a-blind-coherent-reliability-based-ads-b-decoder-for-low-snr
+    - 2026-07-01-ads-b-signal-separation-with-a-dual-path-convolutional-recur
+    - 2025-06-01-non-negative-matrix-factorization-guided-fs-gcc-method-for-t
+    - 2022-01-01-randomized-low-rank-and-sparse-decomposition-based-receiver
