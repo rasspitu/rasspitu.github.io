@@ -7,9 +7,9 @@ This file gives Claude Code the standing context for this repository. Read it fu
 A static research-group website for **RASSP — RAdar and Sonar Signal Processing Research Group**, hosted on GitHub Pages.
 
 - Institution: İstanbul Teknik Üniversitesi (İTÜ / Istanbul Technical University), Istanbul, Türkiye
-- Faculty / department within İTÜ: TODO (confirm with the user)
+- Department within İTÜ: Department of Electronics and Communication Engineering (Elektronik ve Haberleşme Mühendisliği), https://ehb.itu.edu.tr/en — the group belongs to this department
 - Group lead (PI, role `pi`): Prof. Dr. Işın Erer
-- Researcher (role `faculty`): Dr. Yavuz Emre Kayacan
+- Senior Researcher (role `faculty`): Dr. Yavuz Emre Kayacan
 - Other members: TODO (confirm with the user)
 - Write names with correct Turkish characters (Işın, not Isin). On the People page list the PI first, then researchers.
 - Do not use the official İTÜ logo or seal unless the user provides the file and confirms permission; link to https://www.itu.edu.tr instead.
@@ -123,7 +123,7 @@ Web-only steps to list for the user at the end (the CLI cannot do these):
 
 ## Open questions (ask the user, do not guess)
 
-- Faculty / department at İTÜ to show on the site
+- ~~Faculty / department at İTÜ~~ → answered: Department of Electronics and Communication Engineering
 - Other members (students, alumni) with titles, photos and links
 - Photos of Prof. Dr. Işın Erer and Dr. Yavuz Emre Kayacan (emails, Scholar and ORCID are in `_data/people.yml`)
 
@@ -182,9 +182,9 @@ Still open / next steps:
 1. Delete the empty repo `rasspitu/rassp` (user approved deleting it). Needs the `delete_repo` scope:
    `gh auth refresh -h github.com -s delete_repo`, then `gh repo delete rasspitu/rassp --yes`,
    or delete it in the browser (Settings → Delete this repository).
-2. Real content from the user (see "Open questions" above): faculty/department (ITU portal lists
-   Erer under the Department of Electronics and Communication Engineering; confirm), members and
-   photos, group email and address.
+2. Real content from the user (see "Open questions" above): members and photos, group email and
+   postal address. (Department: done — shown on Home, Contact and the sidebar.
+   Kayacan: title "Senior Researcher", email yekayacan@29mayis.edu.tr, confirmed by the user.)
 3. Contact map: not added; suggested OpenStreetMap (no tracking) — waiting for the user's answer.
 4. Light/dark theme toggle: kept (follows OS preference by default) — ask whether to keep it.
 5. Mission paragraph (`_pages/about.md`) and research summaries (`_data/research.yml`) are drafts

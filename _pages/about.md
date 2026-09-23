@@ -11,7 +11,7 @@ redirect_from:
 <img class="home-logo" src="{{ '/images/rassp_logo.svg' | relative_url }}" alt="RASSP logo: a radar and sonar emblem next to the words RASSP, Radar and Sonar Signal Processing Research Group" width="920" height="260">
 
 <!-- TODO: review the mission statement below and replace it with the group's own wording. -->
-RASSP is a research group at [Istanbul Technical University](https://www.itu.edu.tr) working on signal processing for radar and sonar systems. We develop methods that see beneath the ground surface and below the waterline, from classical and tensor-based techniques to modern deep learning, and we bring them to real-time embedded platforms.
+RASSP is a research group in the [Department of Electronics and Communication Engineering](https://ehb.itu.edu.tr/en) at [Istanbul Technical University](https://www.itu.edu.tr), working on signal processing for radar and sonar systems. We develop methods that see beneath the ground surface and below the waterline, from classical and tensor-based techniques to modern deep learning, and we bring them to real-time embedded platforms.
 
 Research interests
 ------

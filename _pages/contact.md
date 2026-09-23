@@ -5,9 +5,10 @@ excerpt: "How to reach the RASSP group."
 author_profile: true
 ---
 
-<!-- TODO: add the faculty / department, building and room, full postal address and group email. -->
+<!-- TODO: add the building and room, full postal address and group email. -->
 
 **RASSP Research Group**<br>
+Department of Electronics and Communication Engineering<br>
 Istanbul Technical University<br>
 Istanbul, Türkiye
 
@@ -21,4 +22,5 @@ Email: [{{ site.author.email }}](mailto:{{ site.author.email }})
 
 For questions about a specific project, you can also contact the [group members]({{ '/people/' | relative_url }}) directly.
 
+Department website: [ehb.itu.edu.tr](https://ehb.itu.edu.tr/en)<br>
 University website: [www.itu.edu.tr](https://www.itu.edu.tr)

@@ -1,7 +1,8 @@
 # RASSP website
 
 Source of **https://rasspitu.github.io/**, the website of the RASSP (RAdar and Sonar Signal Processing)
-Research Group at Istanbul Technical University.
+Research Group, Department of Electronics and Communication Engineering,
+Istanbul Technical University.
 
 Every push to `main` rebuilds and publishes the site automatically (GitHub Actions, about 2 minutes).
 You can edit files directly on github.com (open the file, click the pencil icon, "Commit changes"),

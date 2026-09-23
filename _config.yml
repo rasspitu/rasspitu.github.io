@@ -9,7 +9,7 @@ site_theme               : "rassp" # _sass/theme/_rassp_light.scss and _rassp_da
 title                    : "RASSP"
 title_separator          : "-"
 name                     : &name "RASSP Research Group"
-description              : &description "RAdar and Sonar Signal Processing Research Group at Istanbul Technical University"
+description              : &description "RAdar and Sonar Signal Processing Research Group, Department of Electronics and Communication Engineering, Istanbul Technical University"
 url                      : https://rasspitu.github.io
 baseurl                  : ""
 repository               : "rasspitu/rasspitu.github.io"
@@ -21,7 +21,7 @@ author:
   pronouns         :
   bio              : "RAdar and Sonar Signal Processing Research Group"
   location         : "Istanbul, Türkiye"
-  employer         : "Istanbul Technical University"
+  employer         : "Department of Electronics and Communication Engineering, Istanbul Technical University"
   uri              : "https://www.itu.edu.tr"
   email            : # TODO: group email address
 
