@@ -129,6 +129,57 @@ Web-only steps to list for the user at the end (the CLI cannot do these):
 
 - Final list of members with photos and links
 - Publications list (BibTeX preferred)
-- Whether to add a Turkish version of the site
-- Whether a News page is wanted
+- ~~Whether to add a Turkish version of the site~~ → answered: no Turkish version
+- ~~Whether a News page is wanted~~ → answered: yes (added, `_data/news.yml`)
 - Group email address and physical address for Contact
+
+## Project status (handoff log)
+
+The user works on this project from more than one computer. When they ask
+"where did we leave off?" / "nerede kaldık?", answer from this section (in Turkish,
+the user's language), then continue. Keep this section up to date at the end of
+every work session and commit it.
+
+### Last update: 2026-09-23
+
+**Phases 0–4 of PROMPT.md are done. The site is live at https://rasspitu.github.io/.**
+
+Done:
+- Repo `rasspitu/rasspitu.github.io` created (public); GitHub account used: `iturassp` (org admin).
+  Commits use the repo-local identity `RASSP <332884513+iturassp@users.noreply.github.com>`.
+- AcademicPages template imported (upstream `3d28cd2`) and stripped; RASSP theme in
+  `_sass/theme/_rassp_{light,dark}.scss`, custom styles in `_sass/layout/_rassp.scss`.
+- Pages: Home, Research, Publications, People, Equipments ("Equipments" label kept on purpose), News, Contact.
+- Data: `_data/{people,research,equipment,news}.yml`; publications from
+  `markdown_generator/publications.bib` via `markdown_generator/pubsFromBib.py` (needs `pip install pybtex`).
+- Entries with `placeholder: true` show locally but are hidden on the live site (`JEKYLL_ENV=production`).
+- Deploy: `.github/workflows/pages.yml` (Pages source = GitHub Actions). Every push to `main` deploys.
+- Org profile repo `rasspitu/.github` (`profile/README.md`) created; repo topics set.
+- Verified: no broken links, alt text everywhere, favicon, mobile menu, dark mode, WCAG AA contrast.
+  Lighthouse not run (Node not installed).
+- Fixed template issues: theme toggle hidden on desktop (greedy-nav selector, patched in
+  `assets/js/main.min.js` and the plugin source), fixed footer covering content, MathJax only
+  on pages with `mathjax: true`.
+
+Still open / next steps:
+1. Delete the empty repo `rasspitu/rassp` (user approved deleting it). Needs the `delete_repo` scope:
+   `gh auth refresh -h github.com -s delete_repo`, then `gh repo delete rasspitu/rassp --yes`,
+   or delete it in the browser (Settings → Delete this repository).
+2. Real content from the user (see "Open questions" above): faculty/department, members and photos,
+   emails / Scholar / ORCID of the two researchers, BibTeX, group email and address.
+3. Contact map: not added; suggested OpenStreetMap (no tracking) — waiting for the user's answer.
+4. Light/dark theme toggle: kept (follows OS preference by default) — ask whether to keep it.
+5. Mission paragraph (`_pages/about.md`) and research summaries (`_data/research.yml`) are drafts
+   marked TODO; the group should rewrite them.
+6. Web-only steps for the user: org avatar (`images/rassp_icon.png`), org profile fields, invite
+   members (PI + one backup as Owner), optional branch protection, optional custom domain.
+
+### Setting up another computer
+
+- This folder syncs via OneDrive, including `.git`. Do not work on both computers at the same
+  time; run `git status` and `git pull` before starting.
+- Install tools if missing: `winget install --id GitHub.cli -e`, then
+  `gh auth login -h github.com -p https -w -s repo,workflow,admin:org` and `gh auth setup-git`;
+  `winget install RubyInstallerTeam.RubyWithDevKit.3.3` then `ridk install 3` and `bundle install`
+  (installs gems into the Ruby folder, not into OneDrive); `pip install pybtex` for publications.
+- Local preview: `bundle exec jekyll serve` → http://localhost:4000.
