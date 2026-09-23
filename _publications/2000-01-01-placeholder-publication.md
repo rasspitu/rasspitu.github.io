@@ -1,6 +1,8 @@
 ---
-# Example of a hand-written publication file. It is shown in local previews only
-# (placeholder: true) and can be deleted once real publications are added.
+# Example of a hand-written publication file. `published: false` keeps it off the
+# site; preview it locally with `bundle exec jekyll serve --unpublished`.
+# To use it as a template: copy, rename, fill in, and delete the last three lines
+# of this front matter. Delete this file once real publications are added.
 # Most publications should be generated from markdown_generator/publications.bib instead.
 title: "TODO: Example publication title"
 authors: "TODO: Author One, Author Two"
@@ -17,6 +19,7 @@ bibtex: |
   }
 placeholder: true
 sitemap: false
+published: false
 ---
 
 Optional text shown on the publication's own page, e.g. the abstract.

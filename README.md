@@ -63,7 +63,8 @@ everything else under Preprints (override with `category = {journal}` in the ent
 Do not edit generated files by hand; they are rewritten on every run. See `markdown_generator/README.md`.
 
 If you cannot run Python, copy `_publications/2000-01-01-placeholder-publication.md`,
-rename it `YYYY-MM-DD-short-title.md`, fill in the fields and remove `placeholder: true`.
+rename it `YYYY-MM-DD-short-title.md`, fill in the fields and delete the `placeholder`,
+`sitemap` and `published` lines.
 
 ## Add a news item
 
@@ -91,7 +92,8 @@ Optionally put a photo in `images/equipment/`, then add to `_data/equipment.yml`
 ## Placeholders
 
 Entries with `placeholder: true` (and text starting with `TODO`) are examples waiting for real data.
-They show up in local previews but are **hidden on the live site**. Replace or delete them;
+They show up in local previews but are **hidden on the live site** (the example publication only
+appears with `bundle exec jekyll serve --unpublished`). Replace or delete them;
 `grep -rn TODO _data _pages _publications` finds them all.
 
 ## Preview locally
