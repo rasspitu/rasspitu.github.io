@@ -47,8 +47,11 @@ publication_category:
   preprint:
     title: 'Preprints'
 
+# Number of latest items from _data/news.yml shown on the home page (0 to hide)
+news_on_home             : 3
+
 # Site Settings
-teaser                   : "rassp_icon.png" # fallback image for social media previews
+teaser                  : "rassp_icon.png" # fallback image for social media previews
 breadcrumbs              : false
 words_per_minute         : 160
 future                   : true
@@ -156,7 +159,7 @@ defaults:
       path: ""
       type: publications
     values:
-      layout: single
+      layout: publication
       author_profile: true
 
 

@@ -1,0 +1,4 @@
+{% comment %}
+  Sets `show_placeholders`: entries marked `placeholder: true` are shown in local
+  previews (development) and hidden on the live site (JEKYLL_ENV=production).
+{% endcomment %}{% if jekyll.environment == "production" %}{% assign show_placeholders = false %}{% else %}{% assign show_placeholders = true %}{% endif %}

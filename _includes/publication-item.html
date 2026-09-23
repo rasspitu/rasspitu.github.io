@@ -1,0 +1,12 @@
+{% comment %}
+  One entry in a publication list.
+  Usage: {% include publication-item.html pub=pub %}
+{% endcomment %}
+{% assign pub = include.pub %}
+<li class="publication">
+  {% if pub.authors %}<span class="publication__authors">{{ pub.authors }}</span>.{% endif %}
+  <a class="publication__title" href="{{ pub.url | relative_url }}">{{ pub.title }}</a>.
+  {% if pub.venue %}<em>{{ pub.venue }}</em>,{% endif %}
+  {{ pub.date | date: "%Y" }}.
+  {% include publication-links.html pub=pub %}
+</li>

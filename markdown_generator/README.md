@@ -1,11 +1,18 @@
-# Markdown Generator
+# Publication generator
 
-This directory contains various ways of creating Markdown for your site. In general, filenames that end with `.ipynb` or `.py` are similar, but may contain different documentation or are intended to be run from with GitHub when deploying your site.
+`pubsFromBib.py` turns `publications.bib` into one Markdown file per paper in `_publications/`,
+which the Publications page lists by category, newest first.
 
-## Python Scripts
+```
+pip install pybtex
+python markdown_generator/pubsFromBib.py
+```
 
-The .py files are Python scripts that that can be run from the command line (ex., `python3 publications.py publications.csv`) with the objective of also ensuring that they have reduced requirements for packages, which may allow them to run when deploying your site from within GitHub.
-
-## Jupyter Notebooks
-
-These .ipynb files are Jupyter notebook files that convert a TSV containing structured data about talks (`talks.tsv`) or presentations (`presentations.tsv`) into individual markdown files that will be properly formatted for the academicpages template. The notebooks contain a lot of documentation about the process.
+- Run it from the repository root after every change to `publications.bib`, then commit
+  both the `.bib` file and the regenerated `_publications/` files.
+- Files it generated earlier (marked `generated_by: pubsFromBib`) are deleted and rewritten,
+  so edit the BibTeX, not the generated files. Hand-written files are left alone.
+- Category: `@article` → Journal Articles, `@inproceedings` / `@conference` → Conference Papers,
+  anything else → Preprints. Add `category = {journal}` (or `conference`, `preprint`) to an
+  entry to override.
+- Entries without `title` or `year` are skipped with a message.

@@ -1,160 +1,168 @@
 #!/usr/bin/env python
-# coding: utf-8
+"""Generate the files in _publications/ from a BibTeX file.
 
-# # Publications markdown generator for academicpages
-# 
-# Takes a set of bibtex of publications and converts them for use with [academicpages.github.io](academicpages.github.io). This is an interactive Jupyter notebook ([see more info here](http://jupyter-notebook-beginner-guide.readthedocs.io/en/latest/what_is_jupyter.html)). 
-# 
-# The core python code is also in `pubsFromBibs.py`. 
-# Run either from the `markdown_generator` folder after replacing updating the publist dictionary with:
-# * bib file names
-# * specific venue keys based on your bib file preferences
-# * any specific pre-text for specific files
-# * Collection Name (future feature)
-# 
-# TODO: Make this work with other databases of citations, 
-# TODO: Merge this with the existing TSV parsing solution
+Usage (from the repository root):
 
+    pip install pybtex
+    python markdown_generator/pubsFromBib.py                      # uses markdown_generator/publications.bib
+    python markdown_generator/pubsFromBib.py path/to/other.bib
 
-from pybtex.database.input import bibtex
-import pybtex.database.input.bibtex 
-from time import strptime
-import string
-import html
-import os
+Every run first deletes the files this script generated before (they contain
+`generated_by: pubsFromBib`) and then writes one Markdown file per BibTeX entry,
+so the BibTeX file is the single source of truth. Files you wrote by hand are
+never touched.
+
+Category of each entry (see `publication_category` in _config.yml):
+  - an explicit `category = {journal|conference|preprint}` field in the entry wins;
+  - otherwise @article -> journal, @inproceedings/@conference/@proceedings/@incollection
+    -> conference, and anything else (@misc, @unpublished, @techreport, ...) -> preprint.
+
+Adapted from the AcademicPages markdown_generator (MIT license).
+"""
+
+import codecs
+import json
 import re
+import sys
+import unicodedata
+from pathlib import Path
 
-#todo: incorporate different collection types rather than a catch all publications, requires other changes to template
-publist = {
-    "proceeding": {
-        "file" : "proceedings.bib",
-        "venuekey": "booktitle",
-        "venue-pretext": "In the proceedings of ",
-        "collection" : {"name":"publications",
-                        "permalink":"/publication/"}
-        
-    },
-    "journal":{
-        "file": "pubs.bib",
-        "venuekey" : "journal",
-        "venue-pretext" : "",
-        "collection" : {"name":"publications",
-                        "permalink":"/publication/"}
-    } 
+import latexcodec  # noqa: F401  (registers the "ulatex" codec; installed with pybtex)
+from pybtex.database import BibliographyData, parse_file
+
+REPO = Path(__file__).resolve().parent.parent
+DEFAULT_BIB = REPO / "markdown_generator" / "publications.bib"
+OUT_DIR = REPO / "_publications"
+MARKER = "generated_by: pubsFromBib"
+
+CATEGORY_BY_TYPE = {
+    "article": "journal",
+    "inproceedings": "conference",
+    "conference": "conference",
+    "proceedings": "conference",
+    "incollection": "conference",
 }
+CATEGORIES = {"journal", "conference", "preprint"}
 
-html_escape_table = {
-    "&": "&amp;",
-    '"': "&quot;",
-    "'": "&apos;"
-    }
+MONTHS = {m: i for i, m in enumerate(
+    ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"], start=1)}
 
-def html_escape(text):
-    """Produce entities within text."""
-    return "".join(html_escape_table.get(c,c) for c in text)
+# Turkish letters that NFKD does not reduce to ASCII
+ASCII_MAP = str.maketrans({"ı": "i", "İ": "I", "ş": "s", "Ş": "S", "ğ": "g", "Ğ": "G"})
 
 
-for pubsource in publist:
-    parser = bibtex.Parser()
-    bibdata = parser.parse_file(publist[pubsource]["file"])
+def latex_to_text(value):
+    """Decode LaTeX accents (e.g. I{\\c{s}}{\\i}n -> Işın) and drop braces."""
+    text = codecs.decode(value, "ulatex")
+    text = text.replace("{", "").replace("}", "")
+    return re.sub(r"\s+", " ", text).strip()
 
-    #loop through the individual references in a given bibtex file
-    for bib_id in bibdata.entries:
-        #reset default date
-        pub_year = "1900"
-        pub_month = "01"
-        pub_day = "01"
-        
-        b = bibdata.entries[bib_id].fields
-        
-        try:
-            pub_year = f'{b["year"]}'
 
-            #todo: this hack for month and day needs some cleanup
-            if "month" in b.keys(): 
-                if(len(b["month"])<3):
-                    pub_month = "0"+b["month"]
-                    pub_month = pub_month[-2:]
-                elif(b["month"] not in range(12)):
-                    tmnth = strptime(b["month"][:3],'%b').tm_mon   
-                    pub_month = "{:02d}".format(tmnth) 
-                else:
-                    pub_month = str(b["month"])
-            if "day" in b.keys(): 
-                pub_day = str(b["day"])
+def person_name(person):
+    parts = person.first_names + person.middle_names + person.prelast_names + person.last_names
+    name = " ".join(latex_to_text(p) for p in parts)
+    if person.lineage_names:
+        name += ", " + " ".join(latex_to_text(p) for p in person.lineage_names)
+    return name
 
-                
-            pub_date = pub_year+"-"+pub_month+"-"+pub_day
-            
-            #strip out {} as needed (some bibtex entries that maintain formatting)
-            clean_title = b["title"].replace("{", "").replace("}","").replace("\\","").replace(" ","-")    
 
-            url_slug = re.sub("\\[.*\\]|[^a-zA-Z0-9_-]", "", clean_title)
-            url_slug = url_slug.replace("--","-")
+def slugify(text, max_len=60):
+    text = unicodedata.normalize("NFKD", text.translate(ASCII_MAP))
+    text = text.encode("ascii", "ignore").decode("ascii").lower()
+    text = re.sub(r"[^a-z0-9]+", "-", text).strip("-")
+    return text[:max_len].rstrip("-") or "untitled"
 
-            md_filename = (str(pub_date) + "-" + url_slug + ".md").replace("--","-")
-            html_filename = (str(pub_date) + "-" + url_slug).replace("--","-")
 
-            #Build Citation from text
-            citation = ""
+def pub_date(fields):
+    year = int(fields["year"])
+    month = 1
+    raw = fields.get("month", "").strip().lower()
+    if raw.isdigit():
+        month = int(raw)
+    elif raw[:3] in MONTHS:
+        month = MONTHS[raw[:3]]
+    day = int(fields["day"]) if fields.get("day", "").isdigit() else 1
+    return f"{year:04d}-{month:02d}-{day:02d}"
 
-            #citation authors - todo - add highlighting for primary author?
-            for author in bibdata.entries[bib_id].persons["author"]:
-                citation = citation+" "+author.first_names[0]+" "+author.last_names[0]+", "
 
-            #citation title
-            citation = citation + "\"" + html_escape(b["title"].replace("{", "").replace("}","").replace("\\","")) + ".\""
+def venue_of(entry):
+    f = entry.fields
+    for key in ("journal", "booktitle", "howpublished", "publisher", "institution", "school"):
+        if f.get(key):
+            return latex_to_text(f[key])
+    if f.get("eprint"):
+        prefix = f.get("archiveprefix", f.get("eprinttype", "arXiv"))
+        return f"{prefix}:{f['eprint']}"
+    return ""
 
-            #add venue logic depending on citation type
-            venue = publist[pubsource]["venue-pretext"]+b[publist[pubsource]["venuekey"]].replace("{", "").replace("}","").replace("\\","")
 
-            citation = citation + " " + html_escape(venue)
-            citation = citation + ", " + pub_year + "."
+def category_of(entry):
+    explicit = entry.fields.get("category", "").strip().lower()
+    if explicit in CATEGORIES:
+        return explicit
+    return CATEGORY_BY_TYPE.get(entry.type.lower(), "preprint")
 
-            
-            ## YAML variables
-            md = "---\ntitle: \""   + html_escape(b["title"].replace("{", "").replace("}","").replace("\\","")) + '"\n'
-            
-            md += """collection: """ +  publist[pubsource]["collection"]["name"]
 
-            md += """\npermalink: """ + publist[pubsource]["collection"]["permalink"]  + html_filename
-            
-            note = False
-            if "note" in b.keys():
-                if len(str(b["note"])) > 5:
-                    md += "\nexcerpt: '" + html_escape(b["note"]) + "'"
-                    note = True
+def yaml_str(value):
+    # A JSON string is a valid YAML double-quoted scalar
+    return json.dumps(value, ensure_ascii=False)
 
-            md += "\ndate: " + str(pub_date) 
 
-            md += "\nvenue: '" + html_escape(venue) + "'"
-            
-            url = False
-            if "url" in b.keys():
-                if len(str(b["url"])) > 5:
-                    md += "\npaperurl: '" + b["url"] + "'"
-                    url = True
+def to_markdown(key, entry):
+    f = entry.fields
+    title = latex_to_text(f["title"])
+    date = pub_date(f)
+    authors = ", ".join(person_name(p) for p in entry.persons.get("author", []))
+    bibtex = BibliographyData({key: entry}).to_string("bibtex").strip()
 
-            md += "\ncitation: '" + html_escape(citation) + "'"
+    lines = [
+        "---",
+        f"title: {yaml_str(title)}",
+        f"authors: {yaml_str(authors)}",
+        f"venue: {yaml_str(venue_of(entry))}",
+        f"date: {date}",
+        f"category: {category_of(entry)}",
+    ]
+    if f.get("doi"):
+        doi = re.sub(r"^https?://(dx\.)?doi\.org/", "", f["doi"].strip())
+        lines.append(f"doi: {yaml_str(doi)}")
+    if f.get("url"):
+        lines.append(f"paperurl: {yaml_str(f['url'].strip())}")
+    lines.append("bibtex: |")
+    lines += ["  " + line for line in bibtex.splitlines()]
+    lines += [MARKER, "---", ""]
+    if f.get("abstract"):
+        lines += ["**Abstract.** " + latex_to_text(f["abstract"]), ""]
 
-            md += "\n---"
+    filename = f"{date}-{slugify(title)}.md"
+    return filename, "\n".join(lines)
 
-            
-            ## Markdown description for individual page
-            if note:
-                md += "\n" + html_escape(b["note"]) + "\n"
 
-            if url:
-                md += "\n[Access paper here](" + b["url"] + "){:target=\"_blank\"}\n" 
-            else:
-                md += "\nUse [Google Scholar](https://scholar.google.com/scholar?q="+html.escape(clean_title.replace("-","+"))+"){:target=\"_blank\"} for full citation"
+def main():
+    bib_path = Path(sys.argv[1]) if len(sys.argv) > 1 else DEFAULT_BIB
+    bib = parse_file(str(bib_path), bib_format="bibtex")
+    OUT_DIR.mkdir(exist_ok=True)
 
-            md_filename = os.path.basename(md_filename)
+    removed = 0
+    for old in OUT_DIR.glob("*.md"):
+        if MARKER in old.read_text(encoding="utf-8"):
+            old.unlink()
+            removed += 1
 
-            with open("../_publications/" + md_filename, 'w', encoding="utf-8") as f:
-                f.write(md)
-            print(f'SUCCESSFULLY PARSED {bib_id}: \"', b["title"][:60],"..."*(len(b['title'])>60),"\"")
-        # field may not exist for a reference
-        except KeyError as e:
-            print(f'WARNING Missing Expected Field {e} from entry {bib_id}: \"', b["title"][:30],"..."*(len(b['title'])>30),"\"")
+    written, skipped = 0, 0
+    for key, entry in bib.entries.items():
+        missing = [field for field in ("title", "year") if field not in entry.fields]
+        if missing:
+            print(f"SKIPPED {key}: missing {', '.join(missing)}")
+            skipped += 1
             continue
+        filename, content = to_markdown(key, entry)
+        (OUT_DIR / filename).write_text(content, encoding="utf-8", newline="\n")
+        print(f"wrote _publications/{filename}")
+        written += 1
+
+    print(f"\n{written} written, {skipped} skipped, {removed} old generated files removed.")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,17 @@
+{% comment %}
+  DOI / paper / BibTeX links for a publication.
+  Usage: {% include publication-links.html pub=page %}
+{% endcomment %}
+{% assign pub = include.pub %}
+{% if pub.doi or pub.paperurl or pub.bibtex %}
+<span class="publication__links">
+  {% if pub.doi %}<a href="https://doi.org/{{ pub.doi }}">DOI</a>{% endif %}
+  {% if pub.paperurl %}<a href="{{ pub.paperurl }}">Paper</a>{% endif %}
+</span>
+{% if pub.bibtex %}
+<details class="publication__bibtex">
+  <summary>BibTeX</summary>
+  <pre><code>{{ pub.bibtex | strip | escape }}</code></pre>
+</details>
+{% endif %}
+{% endif %}

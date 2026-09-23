@@ -1,0 +1,14 @@
+---
+layout: single
+---
+
+<p class="publication-meta">
+  {% if page.authors %}{{ page.authors }}.<br>{% endif %}
+  {% if page.venue %}<em>{{ page.venue }}</em>, {% endif %}{{ page.date | date: "%Y" }}.
+</p>
+
+{% include publication-links.html pub=page %}
+
+{{ content }}
+
+<p><a href="{{ '/publications/' | relative_url }}">&larr; All publications</a></p>

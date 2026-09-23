@@ -1,36 +1,34 @@
 ---
-layout: archive
 title: "Publications"
 permalink: /publications/
+excerpt: "Journal and conference publications of the RASSP group."
 author_profile: true
 ---
 
+{% comment %}
+  Lists the files in _publications/, grouped by `category` (see `publication_category`
+  in _config.yml), newest first. Regenerate the files from BibTeX with
+  markdown_generator/pubsFromBib.py.
+{% endcomment %}
+{% include placeholder-mode %}
+
 {% if site.author.googlescholar %}
-  <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
+<p>See also our <a href="{{ site.author.googlescholar }}">Google Scholar profile</a>.</p>
 {% endif %}
 
-{% include base_path %}
+{% assign pubs = site.publications | sort: "date" | reverse %}
+{% unless show_placeholders %}{% assign pubs = pubs | where_exp: "p", "p.placeholder != true" %}{% endunless %}
 
-<!-- New style rendering if publication categories are defined -->
-{% if site.publication_category %}
-  {% for category in site.publication_category  %}
-    {% assign title_shown = false %}
-    {% for post in site.publications reversed %}
-      {% if post.category != category[0] %}
-        {% continue %}
-      {% endif %}
-      {% unless title_shown %}
-        <h2>{{ category[1].title }}</h2><hr />
-        {% assign title_shown = true %}
-      {% endunless %}
-      {% include archive-single.html %}
-    {% endfor %}
+{% if pubs.size > 0 %}
+  {% for category in site.publication_category %}
+    {% assign in_category = pubs | where: "category", category[0] %}
+    {% if in_category.size > 0 %}
+<h2 id="{{ category[0] }}">{{ category[1].title }}</h2>
+<ol class="publication-list">
+  {% for pub in in_category %}{% include publication-item.html pub=pub %}{% endfor %}
+</ol>
+    {% endif %}
   {% endfor %}
 {% else %}
-  {% for post in site.publications reversed %}
-    {% include archive-single.html %}
-  {% endfor %}
+<p>The publication list will be available soon.</p>
 {% endif %}
-
-
-
