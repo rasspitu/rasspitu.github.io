@@ -157,8 +157,9 @@ Session 2026-09-23 (second computer):
   portal); Kayacan: yekayacan@29mayis.edu.tr (ORCID also lists kayacan15@itu.edu.tr).
   Contact page now lists both emails.
 - `pubsFromBib.py` made compatible with Python 3.9.
-- NOT PUSHED YET and not built locally: this computer has no Ruby/Bundler, no `gh` and no GitHub
-  credentials. After `gh auth login` + `gh auth setup-git`, push and check the Actions run.
+- Deployed and verified on the live site (Actions build OK; 37 publications, 6 themes with related
+  papers, all publication pages 200, both emails on Contact). `gh` is now set up on this computer;
+  Ruby/Bundler is not, so there is no local build here yet.
 
 Done:
 - Repo `rasspitu/rasspitu.github.io` created (public); GitHub account used: `iturassp` (org admin).
